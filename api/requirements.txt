@@ -1,0 +1,8 @@
+fastapi
+uvicorn[standard]
+sqlalchemy
+GeoAlchemy2
+psycopg2-binary
+loguru
+pandas
+# psycopg2
