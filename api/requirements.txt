@@ -6,4 +6,6 @@ psycopg2-binary
 loguru
 pandas
 geopandas
+requests
+geopy
 # psycopg2

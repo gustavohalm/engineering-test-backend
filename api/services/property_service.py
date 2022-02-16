@@ -1,17 +1,13 @@
-import math
-from unittest import result
 from shapely import wkb
 from shapely.geometry import Point
-from matplotlib import dviread
 from helpers.inputs import GeoJsonBody
 from db.models import Property
 import os.path
 from client.client import download_image
 from db.db import db_conn
 from loguru import logger
-import geopandas as gpd
 from geopy.distance import great_circle
-from sqlalchemy import func, select
+from sqlalchemy import func
 
 
 class PropertyService():
@@ -61,12 +57,12 @@ class PropertyService():
         query_statitics = f"""
             SELECT 
               id,
-        ST_Area(parcel_geo),
-        ST_Area(building_geo),
-        ST_Distance(geocode_geo, ST_Centroid(building_geo)),
-        ST_Area(building_geo)/ST_Area(ST_Buffer(geocode_geo, {zone}))   
-        FROM properties  AS p
-        WHERE p.id = '{id}'
+                ST_Area(parcel_geo),
+                ST_Area(building_geo),
+                ST_Distance(geocode_geo, ST_Centroid(building_geo)),
+                ST_Area(building_geo)/ST_Area(ST_Buffer(geocode_geo, {zone}))   
+            FROM properties  AS p
+            WHERE p.id = '{id}'
         """
         rows = db_conn.execute(query_statitics)
         for r in rows:
