@@ -5,4 +5,5 @@ GeoAlchemy2
 psycopg2-binary
 loguru
 pandas
+geopandas
 # psycopg2

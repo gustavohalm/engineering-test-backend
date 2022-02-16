@@ -21,4 +21,9 @@ def get_image(id: str) -> FileResponse:
 @app.post('/find')
 def find(geo_json: GeoJsonBody):
     res = PropertyService.find_distance(geo_json)
-    return res
+    return JSONResponse(res)
+
+@app.get('/statistics/{id}')
+def statistics(id: str, zone_size_m: int):
+    res =PropertyService.statistics(id, zone_size_m)
+    return JSONResponse(res)
